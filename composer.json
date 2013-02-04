@@ -1,0 +1,21 @@
+{
+    "name": "factorlabs/simope",
+    "description": "Simple object persistance",
+    "homepage": "https://github.com/factorlabs/simope",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lech Albrzykowski",
+            "email": "l.albrzykowski@factorlabs.pl"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "pimple/pimple": "*",
+    },
+    "minimum-stability": "dev",
+}
+

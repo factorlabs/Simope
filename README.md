@@ -1,0 +1,4 @@
+Simope
+======
+
+Simple Object Persistence

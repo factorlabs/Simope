@@ -1,3 +1,6 @@
-netbeans/
-report/
-vendor/
+netbeans
+netbeans/*
+report
+report/*
+vendor
+vendor/*

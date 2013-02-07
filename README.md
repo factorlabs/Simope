@@ -61,7 +61,7 @@ So, here you can find examples of CRUD
     $order = $container['em']->find('stdClass', $order[0]->id);
     var_dump($order);
 ## Now, lets remove an object:
-    $container['em']->remove($entity);
+    $container['em']->remove($order);
 ### Or, purge an repository:
     $repo = new Simope\Repository(
         $container['em'],

@@ -12,12 +12,13 @@ $container['config'] = new Simope\Config(
 $container['em'] = new Simope\EntityManager(
     $container['config']
 );
-$res = 0;
-for ($i=0; $i<100; $i++) {
-    $start = xdebug_time_index();
-    $found = $container['em']->findBy('stdClass', 'foo', 'bar');
-    $end = xdebug_time_index();
-    $res = $res+$end-$start;
+$start = xdebug_time_index();
+for ($i=0; $i<1000; $i++) {
+    //$key = md5(uniqid());
+    $object = new stdClass();
+    $object->foo = 'Some value';
+    $container['em']->persist($object);
     echo $i."\r\n";
 }
-echo ($res/100)."\r\n";
+$end = xdebug_time_index();
+echo $end-$start;

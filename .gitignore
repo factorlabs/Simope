@@ -4,3 +4,4 @@ report/*
 vendor
 storage/*
 tests/storage/*
+nbproject

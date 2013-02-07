@@ -17,7 +17,7 @@ Simope (Simple Object Persistence) is library that allows to persist PHP objects
     require_once __DIR__.'/vendor/Pimpl.php';
 
 
-## Than configure your environment:
+## Then configure your environment:
 
     //Configure Dependency Injection Container (here we use Pimple: https://github.com/fabpot/Pimple)
     //If you dont want to use Pimple or any other DIC, just pass instance of Config explicite

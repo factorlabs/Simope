@@ -4,4 +4,6 @@ report
 report/*
 vendor
 vendor/*
+storage/
+storage/*
 /nbproject/private/

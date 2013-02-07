@@ -49,18 +49,16 @@ So, here you can find examples of CRUD
     $order->name = 'New order';
     $order->items = array('Notebook', 'Keyboard');
     var_dump($container['em']->persist($order));
-
-
 ## Finding an object
-
+    // Returns array of objects
     $order = $container['em']->findBy('stdClass', 'name', 'New order');
     var_dump($order);
-
-
-### Or if you know id of object you can use: 
-    $order = $container['em']->find('stdClass', $order[0]->id);
+### Or if you know id (UUID is native identifier strategy) of object you can use:
+    // Returns an object
+    $order = $container['em']->find('stdClass', '0a6312dd-c6ab-48c0-98e9-8c36df9db4a6');
     var_dump($order);
 ## Now, lets remove an object:
+    // Returns true|false
     $container['em']->remove($order);
 ### Or, purge an repository:
     $repo = new Simope\Repository(

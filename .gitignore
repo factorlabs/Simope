@@ -1,9 +1,6 @@
 netbeans
-netbeans/*
 report
 report/*
 vendor
-vendor/*
-storage/
 storage/*
-/nbproject/private/
+tests/storage/*

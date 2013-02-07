@@ -60,8 +60,9 @@ So, here you can find examples of CRUD
 ### Or if you know id of object you can use: 
     $order = $container['em']->find('stdClass', $order[0]->id);
     var_dump($order);
-
-## Ok, now lets purge an repository:
+## Now, lets remove an object:
+    $container['em']->remove($entity);
+### Or, purge an repository:
     $repo = new Simope\Repository(
         $container['em'],
         'stdClass',

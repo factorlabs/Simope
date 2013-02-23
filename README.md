@@ -2,51 +2,5 @@ Simope
 ======
 # What is Simope?
 Simope (Simple Object Persistence) is library that allows to persist PHP objects without any DBMS installed.
-# Requirements
-* PHP 5.3 or higher
-# Configuration
-## First require library files:
-
-    require_once __DIR__.'/src/autoload.php';
-    spl_autoload_register('autoload');
-    // Path for Pimple, depends on your configuration
-    require_once __DIR__.'/vendor/Pimpl.php';
-## Then configure your environment:
-    //Configure Dependency Injection Container (here we use Pimple: https://github.com/fabpot/Pimple)
-    //If you dont want to use Pimple or any other DIC, just pass instance of Config explicite
-    $container = new Pimple();
-    $container['config'] = new Simope\Config(
-        __DIR__.'/storage',
-        __DIR__.'/lib/tests/test_config.json'
-    );
-
-    $container['em'] = new Simope\EntityManager(
-        $container['config']
-    );
-## The last thing, is to change permissions of **storage** directory 
-Example for Ubuntu users: *sudo chmod -R 777 storage*
-# Usage
-So, here you can find examples of CRUD
-## Persist your first object
-    $order        = new stdClass();
-    $order->name  = 'New order';
-    $order->items = array('Notebook', 'Keyboard');
-    $container['em']->persist($order);
-## Finding an object
-    // Returns array of objects
-    $order = $container['em']->findBy('stdClass', 'name', 'New order');
-    $order;
-### Or if you know id (UUID is native identifier strategy) of object you can use:
-    // Returns an object
-    $order = $container['em']->find('stdClass', '0a6312dd-c6ab-48c0-98e9-8c36df9db4a6');
-    $order;
-## Now, lets remove an object:
-    // Returns true|false
-    $container['em']->remove($order);
-### Or, purge an repository:
-    $repo = new Simope\Repository(
-        $container['em'],
-        'stdClass',
-        $container  
-    );
-    $repo->purge();
+# Documentation
+For more information read doc/index.html

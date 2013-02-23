@@ -1,7 +1,5 @@
-netbeans
 report
-report/*
 vendor
-storage/*
-tests/storage/*
+storage
+tests/storage
 nbproject

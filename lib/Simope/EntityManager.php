@@ -1,28 +1,67 @@
 <?php
+/**
+ * File contains EntityManager class
+ * @category Persistence
+ * @package Simope
+ * @subpackage EntityManager
+ * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @license The MIT License (MIT)
+ * @version GIT: <git_id>
+ * @link https://github.com/factorlabs/Simope
+ */
 namespace Simope;
+/**
+ * Class allows persist an PHP objects
+ * @category Persistence
+ * @package Simope
+ * @subpackage EntityManager
+ * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @license The MIT License (MIT)
+ * @link https://github.com/factorlabs/Simope
+ */
 class EntityManager
 {
-    public function __construct($config)
+    /**
+     * Constructor sets internal configuration 
+     * @param Config $config configuration object 
+     * @return null
+     */
+    public function __construct(Config $config)
     {
         $this->config = $config;
     }
+    /**
+     * Persists object
+     * @param object $entity any PHP object
+     * @throws EntityManagerException
+     * @return null
+     */
     public function persist($entity)
     {
         if (is_object($entity) === false) {
-            throw new Exception\EntityManagerException('Entity should be an object');
+            throw new Exception\EntityManagerException(
+                'Entity should be an object'
+            );
         }
-        $genClass = $this->config->id_gen_strategy_class;
+        $generatorClass = $this->config->id_gen_strategy_class;
         if (!isset($entity->id)) {
-            $entity->id = $genClass::generate();
+            $entity->id = $generatorClass::generate();
         }
         if (
             is_dir($this->config->dir) === false
             || is_writable($this->config->dir) === false
         ) {
-            throw new Exception\EntityManagerException('Could not create entity direcory');
+            throw new Exception\EntityManagerException(
+                'Could not create entity direcory'
+            );
         }
-        if (!is_dir($this->config->dir.'/'.get_class($entity))) {
-            mkdir($this->config->dir.'/'.get_class($entity));
+        $directory = sprintf(
+            "%s/%s",
+            $this->config->dir,
+            get_class($entity)
+        );
+        if (!is_dir($directory)) {
+            mkdir($directory);
         }
         file_put_contents(
             sprintf(
@@ -33,9 +72,15 @@ class EntityManager
             ),
             json_encode($entity)
         );
-        $index = new Index($this->config);
+        $indexClass = $this->config->index_class;
+        $index      = new $indexClass($this->config);
         $index->set($entity);
     }
+    /**
+     * Removes object from storage
+     * @param object $entity any PHP object
+     * @return boolean result of unlink() function
+     */
     public function remove($entity)
     {
         return unlink(
@@ -47,6 +92,12 @@ class EntityManager
             )
         );
     }
+    /**
+     * Removes object from storage
+     * @param string $class name of class
+     * @param mixed $entityId id of entity
+     * @return null|object result of searching
+     */
     public function find($class, $entityId)
     {
         $file = sprintf(
@@ -60,9 +111,17 @@ class EntityManager
             return json_decode(file_get_contents($file));
         }
     }
+    /**
+     * Finds entity by given paramaters
+     * @param string $class name of class
+     * @param mixed $key name of property
+     * @param mixed $value value of property
+     * @return array searching result
+     */
     public function findBy($class, $key, $value)
     {
-        $index = new Index($this->config);
+        $indexClass = $this->config->index_class;
+        $index = new $indexClass($this->config);
         $ids = $index->get($class, $key, $value);
         $result = array();
         foreach ($ids as $id) {
@@ -79,6 +138,12 @@ class EntityManager
         }
         return $result;
     }
+    /**
+     * Returns basic information about created file/object
+     * @param string $class name of class
+     * @param mixed $entityId id of entity
+     * @return null|array basic information
+     */
     public function spy($class, $entityId)
     {
         $file = sprintf(
@@ -96,6 +161,6 @@ class EntityManager
             return $result;
         } else {
             return null;
-        } 
+        }
     }
 }

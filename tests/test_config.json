@@ -1,5 +1,6 @@
 {
     "env" : "dev",
     "id_gen_strategy_class" : "Simope\\Util\\Generator\\Uuid",
-    "directory_manager_class" : "Simope\\Util\\Filesystem\\Directory"
+    "directory_manager_class" : "Simope\\Util\\Filesystem\\Directory",
+    "index_class" : "Simope\\Index"
 }

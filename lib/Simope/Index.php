@@ -1,18 +1,30 @@
 <?php
 /**
  * File contains Index class
- * @license http://opensource.org/licenses/MIT The MIT License (MIT)
+ * @category Persistence
+ * @package Simope
+ * @subpackage Index
  * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @license The MIT License (MIT)
+ * @version GIT: <git_id>
+ * @link https://github.com/factorlabs/Simope
  */
 namespace Simope;
 /**
- * Index class responds of indexing functionality
+ * Class handles indexing of strored objects
+ * @category Persistence
+ * @package Simope
+ * @subpackage Index
+ * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @license The MIT License (MIT)
+ * @link https://github.com/factorlabs/Simope
  */
 class Index
 {
     /**
-     * Constructor
-     * @param object $config configuration object
+     * Constructor sets internal configuration 
+     * @param Config $config configuration object 
+     * @return null
      */
     public function __construct($config)
     {
@@ -69,10 +81,10 @@ class Index
         }
     }
     /**
-     * Gets array of Entities ids 
-     * @param string $class
-     * @param mixed $key
-     * @param mixed $value
+     * Gets array of Entities ids
+     * @param string $class name of class
+     * @param mixed $key name of property
+     * @param mixed $value value of property
      * @return array
      */
     public function get($class, $key, $value)

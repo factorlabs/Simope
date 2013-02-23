@@ -1,18 +1,34 @@
 <?php
 /**
  * File contains Config class
+ * @category Persistence
+ * @package Simope
+ * @subpackage Configuration
  * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @license The MIT License (MIT)
+ * @version GIT: <git_id>
+ * @link https://github.com/factorlabs/Simope
  */
 namespace Simope;
 /**
- * Configuration storage class
+ * Configuration storage class implements Registry pattern
+ * @category Persistence
+ * @package Simope
+ * @subpackage Configuration
+ * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @license The MIT License (MIT)
+ * @link https://github.com/factorlabs/Simope
  */
 class Config
 {
+    /**
+     * Array with configuration
+     * @var array
+     */
     private $config;
     /**
-     * Constructor
-     * @param string $dir storage directory
+     * Constructor reads json configuration file
+     * @param string $dir    storage directory
      * @param Config $config configuration object 
      * @return null
      */
@@ -32,7 +48,7 @@ class Config
     }
     /**
      * Setter, implements Flexible Interface
-     * @param mixed $key container key
+     * @param mixed $key   container key
      * @param mixed $value container value 
      * @return Config
      */

@@ -62,8 +62,7 @@ class Config
      */
     public function __set($key, $value)
     {
-        $this->set($key, $value);
-        return $this;
+        return $this->set($key, $value);
     }
     /**
      * @see Config::get($key)

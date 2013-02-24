@@ -34,7 +34,8 @@ class Repository
         $entityManager,
         $className,
         $container
-    ) {
+    ) 
+    {
         $this->entityManager = $entityManager;
         $this->className     = $className;
         $this->container     = $container;

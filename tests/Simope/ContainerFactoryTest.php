@@ -22,7 +22,7 @@ class ContainerFactoryTest extends \PHPUnit_Framework_TestCase
      * @expectedException Simope\Exception\ContainerFactoryException
      * @expectedExceptionMessage Could not create instance of Container class
      */
-    public function testPersistCantCreateException()
+    public function testCantCreateException()
     {
         $config = new Config(
             __DIR__.'/../storage',

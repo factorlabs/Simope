@@ -22,13 +22,14 @@ namespace Simope;
 class ContainerFactory
 {
     /**
-     * Creating DIC object
+     * Creating DIC object with Factory Method pattern
      * @param Config $config configuration object 
      * @return null|object
      */
     public function create(Config $config)
     {
         $containerClass = $config->get('container_class');
+        // Check, not load!
         if (!class_exists($containerClass, false)) {
             throw new Exception\ContainerFactoryException(
                 'Could not create instance of Container class'

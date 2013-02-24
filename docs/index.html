@@ -50,13 +50,14 @@
         <pre>
         <code>
         //Configure Dependency Injection Container (here we use Pimple: https://github.com/fabpot/Pimple)
+        //DIC is created using ContainerFactory class, so You can implement your own
         //If you dont want to use Pimple or any other DIC, just pass instance of Config explicite
-        $container = new Pimple();
-        $container['config'] = new Simope\Config(
+        $config = new Simope\Config(
             __DIR__.'/storage',
-            __DIR__.'/lib/tests/test_config.json'
+            __DIR__.'/lib/tests/test_config.json' //override it!
         );
-
+        $container = Simope\ContainerFactory::create($config);
+        $container['config'] = $config;
         $container['em'] = new Simope\EntityManager(
             $container['config']
         );
@@ -110,19 +111,19 @@
         </code>
         </pre>
         <h2 id="qa">Quality Assurance</h2>
-        <h3>Simope and DRY &amp KISS</h3>
+        <h3>DRY &amp KISS</h3>
         <p>Simope's goal is to make things as simple as possible. It is also use power of Inversion of Control to gain more flexibility. Delegations pattern is one of the major pattern that is used!</p>
-        <h3>Simope and DDD</h3>
+        <h3>DDD</h3>
         <p>Simope's persistence idea is independent from business logic. For more information read about POPO, Domain Model, DTO and more DDD patterns.</p>
-        <h3>Simope and TDD</h3>
+        <h3>TDD</h3>
         <p>
             First test, than code! We've created Simope according to TDD assumptions.
             The code is 100% covered by tests which were developed with PHPUint. 
             For more information visit <em>tests</em> folder.
         </p>
-        <h3>Simope and Code metrics</h3>
+        <h3>Code metrics</h3>
         <p>Simope is tested with tools such as PHP Mess Detector which allows providing clear and simple code that is easy to use, develope and read.</p>
-        <h3>Simope and codding standards</h3>
+        <h3>Codding standards</h3>
         <p>Simope follows PSR standard.</p>
     </body>
 </html>

@@ -36,8 +36,8 @@ class Repository
         $container
     ) {
         $this->entityManager = $entityManager;
-        $this->className = $className;
-        $this->container = $container;
+        $this->className     = $className;
+        $this->container     = $container;
     }
     /**
      * Purges repository
@@ -45,17 +45,17 @@ class Repository
      */
     public function purge()
     {
-        $directory = sprintf(
+        $directoryName = sprintf(
             '%s/%s',
             $this->container['config']->dir,
             $this->className
         );
-        if (!is_dir($directory)) {
+        if (!is_dir($directoryName)) {
             return;
         }
         $directoryClass = $this->container['config']
             ->get('directory_manager_class');
-        $directory = new $directoryClass($directory);
+        $directory = new $directoryClass($directoryName);
         $directory->purge();
     }
 }

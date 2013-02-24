@@ -7,16 +7,35 @@
     <body>
         <h1>Simope Documentation</h1>
         <ul>
-            <li><a href="#section-1">Requirements</a></li>
-            <li><a href="#section-2">Configuration</a></li>
-            <li><a href="#section-3">Usage</a></li>
-            <li><a href="#section-4">Tests</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="#qa">Quality Assurance</a></li>
         </ul>
-        <h2 id="section-1">Requirements</h2>
+        <h2 id="requirements">Requirements</h2>
         <ul>
             <li>PHP 5.3 or higher</li>
         </ul>
-        <h2 id="section-2">Configuration</h2>
+        <h2 id="installation">Installation</h2>
+        <h3>To install Simope you can use Composer. First you have to create <em>composer.json</em> file</h3>
+        <pre>
+        <code>
+        {
+            "require" :{
+                "factorlabs/simope" : "dev-master"
+            }
+        }
+        </code>
+        </pre>
+        <h3>Then install Composer and run it</h3>
+        <pre>
+        <code>
+            curl -s http://getcomposer.org/installer | php
+            composer.phar install
+        </code>
+        </pre>
+        <h2 id="configuration">Configuration</h2>
         <h3>First require library files</h3>
 
         <pre>
@@ -45,8 +64,8 @@
         </pre>
         <h3>The last thing, is to change permissions of <em>storage</em> directory</h3>
         <p>Example for Ubuntu users: <code>*sudo chmod -R 777 storage*</code></p>
-        <h2 id="section-3">Usage</h2>
-        <p>So, here you can find examples of CRUD</p>
+        <h2 id="usage">Usage</h2>
+        <p>So, we are done. Now try CRUD features.</p>
         <h3>Persist your first object</h3>
         <pre>
         <code>
@@ -90,11 +109,20 @@
         $repo->purge();
         </code>
         </pre>
-        <h2 id="section-4">Tests</h2>
+        <h2 id="qa">Quality Assurance</h2>
+        <h3>Simope and DRY &amp KISS</h3>
+        <p>Simope's goal is to make things as simple as possible. It is also use power of Inversion of Control to gain more flexibility. Delegations pattern is one of the major pattern that is used!</p>
+        <h3>Simope and DDD</h3>
+        <p>Simope's persistence idea is independent from business logic. For more information read about POPO, Domain Model, DTO and more DDD patterns.</p>
+        <h3>Simope and TDD</h3>
         <p>
-            First test, than code! We've created Simope accordint to TDD assumptions.
+            First test, than code! We've created Simope according to TDD assumptions.
             The code is 100% covered by tests which were developed with PHPUint. 
             For more information visit <em>tests</em> folder.
         </p>
+        <h3>Simope and Code metrics</h3>
+        <p>Simope is tested with tools such as PHP Mess Detector which allows providing clear and simple code that is easy to use, develope and read.</p>
+        <h3>Simope and codding standards</h3>
+        <p>Simope follows PSR standard.</p>
     </body>
 </html>

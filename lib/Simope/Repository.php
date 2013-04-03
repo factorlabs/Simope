@@ -59,4 +59,28 @@ class Repository
         $directory = new $directoryClass($directoryName);
         $directory->purge();
     }
+    /**
+     * Finds entity by given id
+     * @param mixed $entityId id of entity
+     * @return null|object result of searching
+     */
+    public function find($entityId)
+    {
+        return $this->entityManager->find($this->className, $entityId);
+    }
+    /**
+     * Finds entity by given paramaters
+     * @param string $class name of class
+     * @param mixed $key name of property
+     * @param mixed $value value of property
+     * @return array searching result
+     */
+    public function findBy($key, $value)
+    {
+        return $this->entityManager->findBy(
+            $this->className,
+            $key,
+            $value
+        );
+    }
 }

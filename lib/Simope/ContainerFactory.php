@@ -26,7 +26,7 @@ class ContainerFactory
      * @param Config $config configuration object 
      * @return null|object
      */
-    public function create(Config $config)
+    public static function create(Config $config)
     {
         $containerClass = $config->get('container_class');
         // Check, not load!

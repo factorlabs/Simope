@@ -53,4 +53,37 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertNull($repo->purge());
     }
+    public function testFind()
+    {
+        $genClass = $this->container['config']->get('id_gen_strategy_class');
+        $entity = new \stdClass();
+        $entity->id = $genClass::generate();
+        $entity->foo = "bar";
+        $this->container['em']->persist($entity);
+        $repository = new Repository(
+            $this->container['em'],
+            'stdClass',
+            $this->container
+        );
+        $foundEntity = $repository->find($entity->id);
+        $this->assertEquals($entity, $foundEntity);
+        
+        $foundEntity = $repository->find(rand(1000000,10000000));
+        $this->assertNull($foundEntity);
+    }
+    public function testFindBy()
+    {
+        $genClass = $this->container['config']->get('id_gen_strategy_class');
+        $entity = new \stdClass();
+        $entity->id = $genClass::generate();
+        $entity->foo = "bar";
+        $this->container['em']->persist($entity);
+        $repository = new Repository(
+            $this->container['em'],
+            'stdClass',
+            $this->container
+        );
+        $found = $repository->findBy("foo", "bar");
+        $this->assertTrue(in_array($entity, $found));
+    }
 }

@@ -65,11 +65,11 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             'stdClass',
             $this->container
         );
-        $foundEntity = $repository->find($entity->id);
-        $this->assertEquals($entity, $foundEntity);
-        
-        $foundEntity = $repository->find(rand(1000000,10000000));
-        $this->assertNull($foundEntity);
+        $foundEntityFirst = $repository->find($entity->id);
+        $this->assertEquals($entity, $foundEntityFirst);
+        $repository->purge();
+        $foundEntitySecond = $repository->find($genClass::generate());
+        $this->assertNull($foundEntitySecond);
     }
     public function testFindBy()
     {

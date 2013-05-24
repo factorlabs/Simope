@@ -94,16 +94,16 @@ class EntityManager
     }
     /**
      * Removes object from storage
-     * @param string $class name of class
+     * @param string $entityName name of class
      * @param mixed $entityId id of entity
      * @return null|object result of searching
      */
-    public function find($class, $entityId)
+    public function find($entityName, $entityId)
     {
         $file = sprintf(
             '%s/%s/%s.json',
             $this->config->dir,
-            $class,
+            $entityName,
             $entityId
         );
         if (file_exists($file)
@@ -113,22 +113,22 @@ class EntityManager
     }
     /**
      * Finds entity by given paramaters
-     * @param string $class name of class
+     * @param string $entityName name of class
      * @param mixed $key name of property
      * @param mixed $value value of property
      * @return array searching result
      */
-    public function findBy($class, $key, $value)
+    public function findBy($entityName, $key, $value)
     {
         $indexClass = $this->config->index_class;
         $index = new $indexClass($this->config);
-        $ids = $index->get($class, $key, $value);
+        $ids = $index->get($entityName, $key, $value);
         $result = array();
         foreach ($ids as $id) {
             $file = sprintf(
                 '%s/%s/%s.json',
                 $this->config->dir,
-                $class,
+                $entityName,
                 $id
             );
             if (file_exists($file)
@@ -140,16 +140,16 @@ class EntityManager
     }
     /**
      * Returns basic information about created file/object
-     * @param string $class name of class
+     * @param string $entityName name of class
      * @param mixed $entityId id of entity
      * @return null|array basic information
      */
-    public function spy($class, $entityId)
+    public function spy($entityName, $entityId)
     {
         $file = sprintf(
             '%s/%s/%s.json',
             $this->config->dir,
-            $class,
+            $entityName,
             $entityId
         );
         if (file_exists($file)
@@ -162,5 +162,11 @@ class EntityManager
         } else {
             return null;
         }
+    }
+    public function getRepository($entityName)
+    {
+        $parts = explode("\\", $entityName);
+        $entityClassName = array_pop($parts);
+        return new $entityName($this, $entityClassName, $this->config);
     }
 }

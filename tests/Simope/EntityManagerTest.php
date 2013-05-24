@@ -174,4 +174,10 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertNull($this->container['em']->spy('stdClass', uniqid()));
     }
+    public function testGetRepository()
+    {       
+        $repository = $this->container['em']->getRepository('Simope\Repository');
+        //var_dump(get_class($repository));
+        $this->assertTrue(is_a($repository, 'Simope\Repository'));
+    }
 }

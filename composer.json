@@ -14,8 +14,7 @@
         "psr-0": { "Simope": "lib/" }
     },
     "require": {
-        "php": ">=5.3.3",
-        "pimple/pimple": "dev-master"
+        "php": ">=5.3.3"
     },
     "minimum-stability": "dev"
 }

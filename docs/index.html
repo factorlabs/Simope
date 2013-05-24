@@ -54,7 +54,7 @@
         //If you dont want to use Pimple or any other DIC, just pass instance of Config explicite
         $config = new Simope\Config(
             __DIR__.'/storage',
-            __DIR__.'/lib/tests/test_config.json' //override it!
+            __DIR__.'/config.json' //override it for custom use if needed! You can also find original configuraion in config.json.sample
         );
         $container = Simope\ContainerFactory::create($config);
         $container['config'] = $config;

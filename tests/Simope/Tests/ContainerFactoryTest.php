@@ -1,6 +1,10 @@
 <?php
-namespace Simope;
-require_once __DIR__.'/../bootstrap.php';
+namespace Simope\Tests;
+
+use Simope\Config;
+use Simope\ContainerFactory;
+use Simope\Exception\ContainerFactoryException;
+
 class ContainerFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreate()

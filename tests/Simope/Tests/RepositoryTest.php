@@ -1,15 +1,23 @@
 <?php
-namespace Simope;
-require_once __DIR__.'/../bootstrap.php';
+namespace Simope\Tests;
+
+use Simope\Config;
+use Simope\ContainerFactory;
+use Simope\Exception\ContainerFactoryException;
+use Simope\EntityManager;
+use Simope\Index;
+use Simope\Repository;
+
 class RepositoryTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        $this->container = new \Pimple();
-        $this->container['config'] = new Config(
+        $config = new Config(
             __DIR__.'/../storage',
             __DIR__.'/../test_config.json'
         );
+        $this->container = ContainerFactory::create($config);
+        $this->container['config'] = $config;
         $this->container['em'] = new EntityManager(
             $this->container['config']
         );

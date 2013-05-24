@@ -1,6 +1,8 @@
 <?php
-namespace Simope;
-require_once __DIR__.'/../bootstrap.php';
+namespace Simope\Tests;
+
+use Simope\Config;
+
 class ConfigTest extends \PHPUnit_Framework_TestCase
 {
     public function testGet()

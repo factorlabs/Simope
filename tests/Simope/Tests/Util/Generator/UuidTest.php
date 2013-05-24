@@ -1,6 +1,8 @@
 <?php
-namespace Simope\Util\Generator;
-require_once __DIR__.'/../../../bootstrap.php';
+namespace Simope\Tests\Util;
+
+use Simope\Util\Generator\Uuid;
+
 class UuidTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()

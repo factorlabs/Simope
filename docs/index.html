@@ -47,9 +47,9 @@
         <h3>Then configure your environment</h3>
         <pre>
         <code>
-        //Configure Dependency Injection Container (here we use SplObjectStorage)
+        //Configure Dependency Injection Container (we are using Pimple https://github.com/fabpot/Pimple)
         //DIC is created using ContainerFactory class, so You can implement your own
-        //If you dont want to use SplObjectStorage (Simope also works great with Pimple) or any other DIC, just pass instance of Config explicite
+        //If you dont want to use Pimple or any other DIC, just pass instance of Config explicite
         $config = new Simope\Config(
             __DIR__.'/storage',
             __DIR__.'/config.json' //override it for custom use if needed! You can also find original configuraion in config.json.sample
@@ -62,7 +62,7 @@
         </code>
         </pre>
         <h3>The last thing, is to change permissions of <em>storage</em> directory</h3>
-        <p>Example for Ubuntu users: <code>*sudo chmod -R 777 storage*</code></p>
+        <p>Example for Ubuntu users: <code>sudo chmod -R 777 storage*</code></p>
         <h2 id="usage">Usage</h2>
         <p>So, we are done. Now try CRUD features.</p>
         <h3>Persist your first object</h3>

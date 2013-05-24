@@ -1,15 +1,21 @@
 <?php
-namespace Simope;
-require_once __DIR__.'/../bootstrap.php';
+namespace Simope\Tests;
+
+use Simope\Config;
+use Simope\ContainerFactory;
+use Simope\Exception\ContainerFactoryException;
+use Simope\EntityManager;
+
 class EntityManagerTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
-    {
-        $this->container = new \Pimple();
-        $this->container['config'] = new Config(
+    {           
+        $config = new Config(
             __DIR__.'/../storage',
             __DIR__.'/../test_config.json'
         );
+        $this->container = ContainerFactory::create($config);
+        $this->container['config'] = $config;
         $this->container['em'] = new EntityManager(
             $this->container['config']
         );
@@ -177,7 +183,6 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
     public function testGetRepository()
     {       
         $repository = $this->container['em']->getRepository('Simope\Repository');
-        //var_dump(get_class($repository));
         $this->assertTrue(is_a($repository, 'Simope\Repository'));
     }
 }

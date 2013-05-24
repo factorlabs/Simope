@@ -1,16 +1,24 @@
 <?php
-namespace Simope\Util\Filesystem;
-require_once __DIR__.'/../../../bootstrap.php';
+namespace Simope\Tests\Util\Filesystem;
+
+use Simope\Config;
+use Simope\ContainerFactory;
+use Simope\Exception\ContainerFactoryException;
+use Simope\EntityManager;
+use Simope\Util\Filesystem\Directory;
+
+
 class DirectoryTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->container = new \Pimple();
-        $this->container['config'] = new \Simope\Config(
+        $config = new Config(
             __DIR__.'/../../../storage',
             __DIR__.'/../../../test_config.json'
         );
-        $this->container['em'] = new \Simope\EntityManager(
+        $this->container = ContainerFactory::create($config);
+        $this->container['config'] = $config;
+        $this->container['em'] = new EntityManager(
             $this->container['config']
         );
     }

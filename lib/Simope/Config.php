@@ -36,6 +36,7 @@ class Config
     {
         $this->config      = json_decode(file_get_contents($config));
         $this->config->dir = $dir;
+        $this->setDebugMode($this->config->env);
     }
     /**
      * Getter
@@ -70,5 +71,27 @@ class Config
     public function __get($key)
     {
         return $this->get($key);
+    }
+    /**
+     * Sets debug mode depended on env configuration
+     * @param string $env env prod|dev
+     * @return null
+     */
+    public function setDebugMode($env)
+    {
+        switch ($env) {
+            case 'prod' :
+                ini_set('display_errors', 0);
+                error_reporting(E_ALL);
+                return;
+            case 'dev' :
+                ini_set('display_errors', 1);
+                error_reporting(E_ALL);
+                return;
+            default :
+                throw new Exception\ConfigException(
+                    'Given environment is not allowed'
+                );
+        }
     }
 }

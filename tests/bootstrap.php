@@ -9,6 +9,7 @@ require_once __DIR__.'/../lib/Simope/Util/Generator/Generable.php';
 require_once __DIR__.'/../lib/Simope/Util/Generator/Uuid.php';
 require_once __DIR__.'/../lib/Simope/Exception/EntityManagerException.php';
 require_once __DIR__.'/../lib/Simope/Exception/ContainerFactoryException.php';
+require_once __DIR__.'/../lib/Simope/Exception/ConfigException.php';
 require_once __DIR__.'/../lib/Simope/Index.php';
 require_once __DIR__.'/../lib/Simope/Repository.php';
 require_once __DIR__.'/../lib/Simope/Util/Filesystem/Directory.php';

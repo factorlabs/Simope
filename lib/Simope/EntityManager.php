@@ -138,32 +138,6 @@ class EntityManager
         return $result;
     }
     /**
-     * Finds all entities
-     * @param string $entityName name of class
-     * @return array searching result
-     */
-    public function findAll($entityName)
-    {
-        $result = array();
-        $repositoryDirectory = sprintf(
-            '%s/%s',
-            $this->config->dir,
-            $entityName
-        ); 
-        foreach (new \DirectoryIterator($repositoryDirectory) as $fileInfo) {
-            if ($fileInfo->isDot()) {
-                continue;
-            }
-            $file = sprintf(
-                '%s/%s',
-                $repositoryDirectory,
-                $fileInfo->getFilename()
-            );
-            $result[] = json_decode(file_get_contents($file));
-        }
-        return $result;
-    }
-    /**
      * Returns basic information about created file/object
      * @param string $entityName name of class
      * @param mixed $entityId id of entity

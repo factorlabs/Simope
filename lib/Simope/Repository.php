@@ -86,7 +86,7 @@ class Repository implements \Countable
      */
     public function findAll()
     {
-        return $this->entityManager->findAll($this->className);
+        return $this->entityManager->findBy($this->className);
     }
     /**
      * Counts all entities in repository

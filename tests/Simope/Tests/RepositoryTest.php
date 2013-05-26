@@ -22,7 +22,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             $this->container['config']
         );
     }
-    public function testPurge()
+    public function testClear()
     {
         $repo = new Repository(
             $this->container['em'],
@@ -41,7 +41,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
                 )
             );
         }
-        $repo->purge();
+        $repo->clear();
         $dir = new \DirectoryIterator(
             sprintf('%s/stdClass', $this->container['config']->dir)
         );
@@ -59,7 +59,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             md5(uniqid()),
             $this->container  
         );
-        $this->assertNull($repo->purge());
+        $this->assertNull($repo->clear());
     }
     public function testFind()
     {
@@ -75,7 +75,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         );
         $foundEntityFirst = $repository->find($entity->id);
         $this->assertEquals($entity, $foundEntityFirst);
-        $repository->purge();
+        $repository->clear();
         $foundEntitySecond = $repository->find($genClass::generate());
         $this->assertNull($foundEntitySecond);
     }

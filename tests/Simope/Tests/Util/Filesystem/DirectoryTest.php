@@ -22,7 +22,7 @@ class DirectoryTest extends \PHPUnit_Framework_TestCase
             $this->container['config']
         );
     }
-    public function testPurge()
+    public function testClear()
     {
         $directory = new Directory($this->container['config']->dir);
         for ($i=0; $i<5; $i++) {
@@ -34,7 +34,7 @@ class DirectoryTest extends \PHPUnit_Framework_TestCase
                 )
             );
         }
-        $directory->purge();
+        $directory->clear();
         $dir = new \DirectoryIterator($this->container['config']->dir);
         $counter = 0;
         foreach ($dir as $fileinfo) {

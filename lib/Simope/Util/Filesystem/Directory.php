@@ -32,10 +32,10 @@ class Directory
         $this->directory = $directory;
     }
     /**
-     * Purges directory
+     * Clears directory
      * @see http://stackoverflow.com/a/3352564/1406036
      */
-    public function purge()
+    public function clear()
     {
         $files = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator(

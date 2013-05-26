@@ -67,7 +67,7 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
                     get_class($entity)
                 )
         );
-        $directoryManager->purge();
+        $directoryManager->clear();
         $entity->foo = 'bar';
         $this->container['em']->persist($entity);
         $found = $this->container['em']

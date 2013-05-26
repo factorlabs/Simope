@@ -41,10 +41,10 @@ class Repository
         $this->container     = $container;
     }
     /**
-     * Purges repository
+     * Clears repository
      * @return null
      */
-    public function purge()
+    public function clear()
     {
         $directoryName = sprintf(
             '%s/%s',
@@ -57,7 +57,7 @@ class Repository
         $directoryClass = $this->container['config']
             ->get('directory_manager_class');
         $directory = new $directoryClass($directoryName);
-        $directory->purge();
+        $directory->clear();
     }
     /**
      * Finds entity by given id

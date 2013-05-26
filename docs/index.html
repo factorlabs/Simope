@@ -40,15 +40,16 @@
 
         <pre>
         <code>
+        require_once __DIR__.'/vendor/pimple/pimple/lib/Pimple.php';
         require_once __DIR__.'/vendor/autoload.php';
         </code>
         </pre>
         <h3>Then configure your environment</h3>
         <pre>
         <code>
-        //Configure Dependency Injection Container (we are using Pimple https://github.com/fabpot/Pimple)
-        //DIC is created using ContainerFactory class, so You can implement your own
-        //If you dont want to use Pimple or any other DIC, just pass instance of Config explicite
+        // Configure Dependency Injection Container (we are using Pimple https://github.com/fabpot/Pimple)
+        // DIC is created using ContainerFactory class, so You can implement your own
+        // If you dont want to use Pimple or any other DIC, just pass instance of Config explicite
         $config = new Simope\Config(
             __DIR__.'/storage',
             __DIR__.'/config.json' //override it for custom use if needed! You can also find original configuraion in config.json.sample
@@ -99,6 +100,20 @@
         // Returns an object
         $order = $container['em']->find('stdClass', '0a6312dd-c6ab-48c0-98e9-8c36df9db4a6');
         $order;
+        </code>
+        </pre>
+        <h3>Updating object</h3>
+        <pre>
+        <code>
+        // Create order object
+        $order        = new stdClass();
+        $order->name  = 'New order';
+        $order->items = array('Notebook', 'Keyboard');
+        $container['em']->persist($order);
+        $order = $container['em']->findBy('stdClass', array('name' => 'New order'));
+        // Change order
+        $order->items = array('Notebook', 'DVD+R Cake');
+        $container['em']->persist($order);
         </code>
         </pre>
         <h3>Now, lets remove an object:</h3>

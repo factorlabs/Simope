@@ -21,7 +21,7 @@ use Simope\Util\Filesystem;
  * @link https://github.com/factorlabs/Simope
  * @see http://martinfowler.com/eaaCatalog/repository.html
  */
-class Repository
+class Repository implements \Countable
 {
     /**
      * Constructor sets initial properties
@@ -89,5 +89,13 @@ class Repository
     public function findAll()
     {
         return $this->entityManager->findAll($this->className);
+    }
+    /**
+     * Counts all entities in repository
+     * @return integer number of entities in repository
+     */
+    public function count()
+    {
+        return count($this->entityManager->findAll($this->className));
     }
 }

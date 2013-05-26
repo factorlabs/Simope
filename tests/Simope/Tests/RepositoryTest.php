@@ -115,4 +115,20 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $found = $repository->findBy("foo", "bar");
         $this->assertTrue(in_array($entity, $found));
     }
+    public function testCount()
+    {
+        $repository = new Repository(
+            $this->container['em'],
+            'stdClass',
+            $this->container
+        );
+        $repository->clear();
+        for ($i=0; $i < 10; $i++) {
+            $genClass = $this->container['config']->get('id_gen_strategy_class');
+            $entity = new \stdClass();
+            $entity->id = $genClass::generate();
+            $this->container['em']->persist($entity);
+        }
+        $this->assertEquals(10, $repository->count());
+    }
 }

@@ -2,7 +2,7 @@
     "name": "factorlabs/simope",
     "description": "Simope (Simple Object Persistence) is library that allows to persist PHP objects without any DBMS installed.",
     "homepage": "https://github.com/factorlabs/simope",
-    "keywords": ["database", "flat files", "prototyping"],
+    "keywords": ["database", "flat files", "prototyping", "popo", "dto", "ddd"],
     "license": "MIT",
     "authors": [
         {

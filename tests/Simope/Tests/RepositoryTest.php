@@ -79,6 +79,27 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $foundEntitySecond = $repository->find($genClass::generate());
         $this->assertNull($foundEntitySecond);
     }
+    public function testFindAll()
+    {
+        $repository = new Repository(
+            $this->container['em'],
+            'stdClass',
+            $this->container
+        );
+        $repository->clear();
+        for ($i=0; $i < 10; $i++) {
+            $genClass = $this->container['config']->get('id_gen_strategy_class');
+            $entity = new \stdClass();
+            $entity->id = $genClass::generate();
+            $entity->foo = uniqid();
+            $this->container['em']->persist($entity);
+        }
+        $foundFirst = $repository->findAll();
+        $this->assertEquals(10, count($foundFirst));
+        $repository->clear();
+        $foundSecond = $repository->find($genClass::generate());
+        $this->assertEquals(0, count($foundSecond));
+    }
     public function testFindBy()
     {
         $genClass = $this->container['config']->get('id_gen_strategy_class');

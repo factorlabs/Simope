@@ -70,7 +70,6 @@ class Repository
     }
     /**
      * Finds entity by given paramaters
-     * @param string $class name of class
      * @param mixed $key name of property
      * @param mixed $value value of property
      * @return array searching result
@@ -82,5 +81,13 @@ class Repository
             $key,
             $value
         );
+    }
+    /**
+     * Finds entity by given paramaters
+     * @return array searching result
+     */
+    public function findAll()
+    {
+        return $this->entityManager->findAll($this->className);
     }
 }

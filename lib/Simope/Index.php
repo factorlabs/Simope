@@ -83,21 +83,45 @@ class Index
     /**
      * Gets array of Entities ids
      * @param string $class name of class
-     * @param mixed $key name of property
-     * @param mixed $value value of property
+     * @param array $criteria search criteria
      * @return array
      */
-    public function get($class, $key, $value)
+    public function get($class, array $criteria = array())
     {
-        $file = sprintf(
-            '%s/index/%s/%s.json',
-            $this->config->dir,
-            $class,
-            $key
-        );
-        if (file_exists($file)) {
-            $content = json_decode(file_get_contents($file), true);
-            return array_keys($content, $value);
+        if (count($criteria) === 0) {
+            $result = array();
+            $resultTmp = array();
+            $indexDirectory = sprintf(
+                '%s/index/%s',
+                $this->config->dir,
+                $class
+            ); 
+            foreach (new \DirectoryIterator($indexDirectory) as $fileInfo) {
+                if ($fileInfo->isDot()) {
+                    continue;
+                }
+                $file = sprintf(
+                    '%s/%s',
+                    $indexDirectory,
+                    $fileInfo->getFilename()
+                );
+                $content = json_decode(file_get_contents($file), true);
+                $found = array_keys($content);
+                $result = array_merge($resultTmp, $found);
+            }
+            return array_unique($result);
+        } else {
+            reset($criteria);
+            $file = sprintf(
+                '%s/index/%s/%s.json',
+                $this->config->dir,
+                $class,
+                key($criteria)
+            );
+            if (file_exists($file)) {
+                $content = json_decode(file_get_contents($file), true);
+                return array_keys($content, $criteria[key($criteria)]);
+            }
         }
         return array();
     }

@@ -77,8 +77,7 @@
         <pre>
         <code>
         // Returns array of objects
-        $order = $container['em']->findBy('stdClass', 'name', 'New order');
-        $order;
+        $orders = $container['em']->findBy('stdClass', array('name' => 'New order'));
         </code>
         </pre>
         <h4>Finding all objects in repository</h4>
@@ -90,6 +89,8 @@
             $container  
         );
         $repo->findAll();
+        // Or using Simope\EntityManager::findBy()
+        $orders = $container['em']->findBy('stdClass');
         </code>
         </pre>
         <h4>Or if you know id (UUID is native identifier strategy) of object</h4>

@@ -71,7 +71,7 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
         $entity->foo = 'bar';
         $this->container['em']->persist($entity);
         $found = $this->container['em']
-            ->findBy('stdClass', 'foo', 'bar');
+            ->findBy('stdClass', array('foo' => 'bar'));
         $this->assertTrue(
             in_array('id', array_keys(get_object_vars($found[0])))
         );
@@ -135,7 +135,7 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
         $entity->foo = "bar";
         $this->container['em']->persist($entity);
         $found = $this->container['em']
-            ->findBy('stdClass', 'foo', 'bar');
+            ->findBy('stdClass', array('foo' => 'bar'));
         $this->assertTrue(in_array($entity, $found));
     }
     public function testFind()

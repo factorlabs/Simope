@@ -114,15 +114,14 @@ class EntityManager
     /**
      * Finds entity by given paramaters
      * @param string $entityName name of class
-     * @param mixed $key name of property
-     * @param mixed $value value of property
+     * @param array $criteria search criteria
      * @return array searching result
      */
-    public function findBy($entityName, $key, $value)
+    public function findBy($entityName, array $criteria = array())
     {
         $indexClass = $this->config->index_class;
         $index = new $indexClass($this->config);
-        $ids = $index->get($entityName, $key, $value);
+        $ids = $index->get($entityName, $criteria);
         $result = array();
         foreach ($ids as $id) {
             $file = sprintf(

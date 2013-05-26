@@ -55,12 +55,12 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         $entity->$key = $value;
         $this->container['index']->set($entity);
         $keys = $this->container['index']
-            ->get(get_class($entity), $key, $value);
+            ->get(get_class($entity), array($key => $value));
         $this->assertTrue(in_array($entity->id, $keys));
         
         
         $keys = $this->container['index']
-            ->get(md5(uniqid()), md5(uniqid()), md5(uniqid()));
+            ->get(md5(uniqid()), array(md5(uniqid()) => md5(uniqid())));
         $this->assertEquals(array(), $keys);
     }
 }

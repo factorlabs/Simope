@@ -70,20 +70,18 @@ class Repository implements \Countable
     }
     /**
      * Finds entity by given paramaters
-     * @param mixed $key name of property
-     * @param mixed $value value of property
+     * @param array $criteria search criteria
      * @return array searching result
      */
-    public function findBy($key, $value)
+    public function findBy(array $criteria = array())
     {
         return $this->entityManager->findBy(
             $this->className,
-            $key,
-            $value
+            $criteria
         );
     }
     /**
-     * Finds entity by given paramaters
+     * Finds all entities
      * @return array searching result
      */
     public function findAll()

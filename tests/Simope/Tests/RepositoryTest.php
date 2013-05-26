@@ -112,8 +112,32 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             'stdClass',
             $this->container
         );
-        $found = $repository->findBy("foo", "bar");
+        $found = $repository->findBy(array('foo' => 'bar'));
         $this->assertTrue(in_array($entity, $found));
+    }
+    public function testFindByEmptyCriteria()
+    {
+        $repository = new Repository(
+            $this->container['em'],
+            'stdClass',
+            $this->container
+        );
+        $repository->clear();
+        for ($i = 0; $i < 10; $i++) {
+            $genClass = $this->container['config']->get('id_gen_strategy_class');
+            $entity = new \stdClass();
+            $entity->id = $genClass::generate();
+            $this->container['em']->persist($entity);
+        }
+        
+        $found = $repository->findBy();
+        $foundAll = $repository->findAll();
+        sort($found);
+        sort($foundAll);
+        for ($i = 0; $i < 10; $i++) {
+            $this->assertEquals($found[$i]->id, $foundAll[$i]->id);
+        }
+        $this->assertEquals(count($found), $repository->count());
     }
     public function testCount()
     {

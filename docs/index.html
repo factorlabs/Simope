@@ -82,6 +82,17 @@
         $order;
         </code>
         </pre>
+        <h4>Finding all objects in repository</h4>
+        <pre>
+        <code>
+        $repo = new Simope\Repository(
+            $container['em'],
+            'stdClass',
+            $container  
+        );
+        $repo->findAll();
+        </code>
+        </pre>
         <h4>Or if you know id (UUID is native identifier strategy) of object</h4>
         <pre>
         <code>

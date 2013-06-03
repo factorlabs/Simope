@@ -94,6 +94,6 @@ class Repository implements \Countable
      */
     public function count()
     {
-        return count($this->entityManager->findAll($this->className));
+        return count($this->findAll());
     }
 }

@@ -19,7 +19,7 @@ namespace Simope\Util\Generator;
  * @license The MIT License (MIT)
  * @link https://github.com/factorlabs/Simope
  */
-interface Generable
+interface GeneratorInterface
 {
     /**
      * Generates unique identificators

@@ -20,7 +20,7 @@ namespace Simope\Util\Generator;
  * @link https://github.com/factorlabs/Simope
  * @see http://stackoverflow.com/a/2040279/1406036
  */
-class Uuid implements Generable
+class Uuid implements GeneratorInterface
 {
     /**
      * {@inheritdoc}

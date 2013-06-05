@@ -87,7 +87,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             $this->container
         );
         $repository->clear();
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 5; $i++) {
             $genClass = $this->container['config']->get('id_gen_strategy_class');
             $entity = new \stdClass();
             $entity->id = $genClass::generate();
@@ -95,7 +95,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             $this->container['em']->persist($entity);
         }
         $foundFirst = $repository->findAll();
-        $this->assertEquals(10, count($foundFirst));
+        $this->assertEquals(5, count($foundFirst));
         $repository->clear();
         $foundSecond = $repository->find($genClass::generate());
         $this->assertEquals(0, count($foundSecond));
@@ -123,7 +123,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             $this->container
         );
         $repository->clear();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $genClass = $this->container['config']->get('id_gen_strategy_class');
             $entity = new \stdClass();
             $entity->id = $genClass::generate();
@@ -135,7 +135,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         sort($found);
         sort($foundAll);
 		sleep(5);
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $this->assertEquals($found[$i]->id, $foundAll[$i]->id);
         }
         $this->assertEquals(count($found), $repository->count());
@@ -148,13 +148,13 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             $this->container
         );
         $repository->clear();
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 5; $i++) {
             $genClass = $this->container['config']->get('id_gen_strategy_class');
             $entity = new \stdClass();
             $entity->id = $genClass::generate();
             $this->container['em']->persist($entity);
         }
 		sleep(5);
-        $this->assertEquals(10, $repository->count());
+        $this->assertEquals(5, $repository->count());
     }
 }

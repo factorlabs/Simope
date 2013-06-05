@@ -134,6 +134,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         $foundAll = $repository->findAll();
         sort($found);
         sort($foundAll);
+		sleep(5);
         for ($i = 0; $i < 10; $i++) {
             $this->assertEquals($found[$i]->id, $foundAll[$i]->id);
         }
@@ -153,6 +154,7 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
             $entity->id = $genClass::generate();
             $this->container['em']->persist($entity);
         }
+		sleep(5);
         $this->assertEquals(10, $repository->count());
     }
 }

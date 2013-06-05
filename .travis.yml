@@ -5,6 +5,6 @@ php:
 before_script:
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev
-  - chmod 777 tests/Simope/storage
+  - chmod 777 factorlabs/Simope/tests/Simope/storage
   
 script: phpunit --configuration phpunit.xml.dist

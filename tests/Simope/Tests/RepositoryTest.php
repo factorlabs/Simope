@@ -135,7 +135,10 @@ class RepositoryTest extends \PHPUnit_Framework_TestCase
         sort($found);
         sort($foundAll);
         for ($i = 0; $i < 10; $i++) {
-            $this->assertEquals($found[$i]->id, $foundAll[$i]->id);
+            $this->assertEquals(
+			    $found[$i]->id,
+			    $foundAll[$i]->id
+		    );
         }
         $this->assertEquals(count($found), $repository->count());
     }

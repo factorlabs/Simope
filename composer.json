@@ -15,7 +15,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "pimple/pimple" : "*"
+        "pimple/pimple" : "pimple/pimple": "1.1.*@dev"
     }
 }
 

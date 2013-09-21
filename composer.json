@@ -16,7 +16,6 @@
     "require": {
         "php": ">=5.3.3",
         "pimple/pimple" : "*"
-    },
-    "minimum-stability": "dev"
+    }
 }
 

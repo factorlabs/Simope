@@ -3,6 +3,9 @@ vendor
 storage
 tests/storage
 nbproject
+.buildpath
+.project
+.settings
 build
 cache.properties
 composer.phar

@@ -4,7 +4,7 @@
  * @category Persistence
  * @package Simope
  * @subpackage Repository
- * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @author Factorlabs Development <info@factorlabs.pl>
  * @license The MIT License (MIT)
  * @version GIT: <git_id>
  * @link https://github.com/factorlabs/Simope
@@ -16,7 +16,7 @@ use Simope\Util\Filesystem;
  * @category Persistence
  * @package Simope
  * @subpackage Repository
- * @author Leszek Albrzykowski <l.albrzykowski@factorlabs.pl>
+ * @author Factorlabs Development <info@factorlabs.pl>
  * @license The MIT License (MIT)
  * @link https://github.com/factorlabs/Simope
  * @see http://martinfowler.com/eaaCatalog/repository.html

@@ -6,8 +6,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Lech Albrzykowski",
-            "email": "l.albrzykowski@factorlabs.pl"
+            "name": "Factorlabs Development",
+            "email": "info@factorlabs.pl"
         }
     ],
     "autoload": {
